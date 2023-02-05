@@ -21,6 +21,7 @@ export default function Dashboard() {
 	);
 	const router = useRouter();
 	const user = useUser();
+	console.log(user);
 	useEffect(() => {
 		const { component } = router.query;
 		if (component) {
@@ -59,16 +60,16 @@ export default function Dashboard() {
 									flexDir={"column"}
 									cursor='pointer'
 								>
-									<Text fontSize={"lg"}>{user.name}</Text>
+									<Text fontSize={"lg"}>{user?.name}</Text>
 									<Text fontWeight={"bold"} fontSize='sm'>
-										{user.staff_id}
+										{user?.staff_id}
 									</Text>
 								</Flex>
 							</Flex>
 						</Box>
 						{/*  */}
 						{/* Navigation Items */}
-					<Flex pt={8} userSelect='none' flexDir='column'>
+						<Flex pt={8} userSelect='none' flexDir='column'>
 							{navigationItems.map((item) => (
 								<Flex
 									onClick={() => {

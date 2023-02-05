@@ -58,7 +58,7 @@ export default function DashboardHome() {
 	const user = useUser();
 	const [graph, setGraphData] = useState([]);
 	const { data, isFetched } = useQuery<any>({
-		// enabled: !!user,
+		enabled: !!user,
 		queryKey: ["scopus-graph-user"],
 		queryFn: async () => {
 			const { data } = await axios.get("/api/fetch-scopus-graph", {

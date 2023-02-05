@@ -19,16 +19,12 @@ export default function UserProvider({
 	const [user, setUser] = useState<User>();
 	const token = localStorage.getItem("token");
 	useEffect(() => {
-		if (!token && router.pathname.includes("dashboard")) {
-			router.push("/");
-			return;
-		}
-		if (token) {
+		if (token && router.pathname.includes("dashboard")) {
 			// @ts-ignore
 			setUser(jwtDecode(token));
 		}
-	}, [router.pathname]);
-
+	}, [router, token]);
+	console.log(user);
 	// @ts-ignore
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }

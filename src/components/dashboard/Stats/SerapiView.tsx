@@ -20,7 +20,7 @@ export default function ScopusView() {
 	const user = useUser();
 
 	const { data, isFetched } = useQuery<ISerapiAuthor>({
-		// enabled: !!user,
+		enabled: !!user,
 		queryKey: ["serapi-user"],
 		queryFn: async () => {
 			const { data } = await axios.get("/api/fetch-serapi-author", {

@@ -19,7 +19,7 @@ export default function ScopusView() {
 	const user = useUser();
 
 	const { data, isFetched } = useQuery<IScopusAuthorApiResponse>({
-		// enabled: !!user,
+		enabled: !!user,
 		queryKey: ["socpus-user"],
 		queryFn: async () => {
 			const { data } = await axios.get("/api/fetch-scopus-author", {
