@@ -42,64 +42,77 @@ export default function Dashboard() {
 						flexDir={"column"}
 						w='300px'
 						h='full'
+						justifyContent={"space-between"}
 						bgColor={"gray.200"}
 					>
 						{/* User Card */}
 
-						<Box p={3}>
-							<Flex
-								w='full'
-								rounded='lg'
-								p={2}
-								bgColor='#33a1fd'
-								shadow={"md"}
-							>
-								<Avatar />{" "}
+						<Box>
+							<Box p={3}>
 								<Flex
-									pl={3}
-									flexDir={"column"}
-									cursor='pointer'
+									w='full'
+									rounded='lg'
+									p={2}
+									bgColor='#33a1fd'
+									shadow={"md"}
 								>
-									<Text fontSize={"lg"}>{user?.name}</Text>
-									<Text fontWeight={"bold"} fontSize='sm'>
-										{user?.staff_id}
-									</Text>
+									<Avatar />{" "}
+									<Flex
+										pl={3}
+										flexDir={"column"}
+										cursor='pointer'
+									>
+										<Text fontSize={"lg"}>
+											{user?.name}
+										</Text>
+										<Text fontWeight={"bold"} fontSize='sm'>
+											{user?.staff_id}
+										</Text>
+									</Flex>
 								</Flex>
+							</Box>
+							{/*  */}
+							{/* Navigation Items */}
+							<Flex pt={8} userSelect='none' flexDir='column'>
+								{navigationItems.map((item) => (
+									<Flex
+										onClick={() => {
+											router.push(
+												`/dashboard/${item.url}`
+											);
+										}}
+										alignItems='center'
+										gap={3}
+										p={3}
+										cursor='pointer'
+										key={item.label}
+										transition='all 300ms'
+										bgColor={
+											ActiveComponent.url === item.url
+												? "#fff"
+												: ""
+										}
+										pointerEvents={
+											ActiveComponent.url === item.url
+												? "none"
+												: "initial"
+										}
+									>
+										{item.icon}
+										<Text
+											fontSize={"lg"}
+											letterSpacing='wide'
+										>
+											{item.label}
+										</Text>
+									</Flex>
+								))}
 							</Flex>
+							{/*  */}
 						</Box>
-						{/*  */}
-						{/* Navigation Items */}
-						<Flex pt={8} userSelect='none' flexDir='column'>
-							{navigationItems.map((item) => (
-								<Flex
-									onClick={() => {
-										router.push(`/dashboard/${item.url}`);
-									}}
-									alignItems='center'
-									gap={3}
-									p={3}
-									cursor='pointer'
-									key={item.label}
-									transition='all 300ms'
-									bgColor={
-										ActiveComponent.url === item.url
-											? "#fff"
-											: ""
-									}
-									pointerEvents={
-										ActiveComponent.url === item.url
-											? "none"
-											: "initial"
-									}
-								>
-									{item.icon}
-									<Text fontSize={"lg"} letterSpacing='wide'>
-										{item.label}
-									</Text>
-								</Flex>
-							))}
-						</Flex>
-						{/*  */}
+						<Box p={10}>
+							<Image src='/kahe.png'></Image>
+						</Box>
 					</Flex>
 				</Box>
 				<ActiveComponent.component></ActiveComponent.component>
